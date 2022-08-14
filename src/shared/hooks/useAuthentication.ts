@@ -1,3 +1,4 @@
+import { handleError } from "../utils/handleError";
 import "../../firebase/config";
 import {
   createUserWithEmailAndPassword,
@@ -37,7 +38,7 @@ export const useAuthentication = () => {
       });
       return user;
     } catch (error) {
-      console.log(error);
+      setError(handleError(error));
     } finally {
       setLoading(false);
     }
@@ -50,7 +51,7 @@ export const useAuthentication = () => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
     } catch (error) {
-      console.log(error);
+      setError(handleError(error));
     } finally {
       setLoading(false);
     }
@@ -61,5 +62,5 @@ export const useAuthentication = () => {
     return () => setCancelled(true);
   }, []);
 
-  return { auth, createUser, login };
+  return { auth, createUser, login, error, loading };
 };
