@@ -2,6 +2,7 @@ import "../../firebase/config";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import { useState, useEffect } from "react";
@@ -42,10 +43,23 @@ export const useAuthentication = () => {
     }
   };
 
+  const login = async (data: any) => {
+    checkIfIsCancelled();
+    setLoading(true);
+    setError("");
+    try {
+      await signInWithEmailAndPassword(auth, data.email, data.password);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Cleanup
   useEffect(() => {
     return () => setCancelled(true);
   }, []);
 
-  return { auth, createUser };
+  return { auth, createUser, login };
 };
