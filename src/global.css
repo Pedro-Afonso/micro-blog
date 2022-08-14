@@ -9,3 +9,37 @@
   line-height: 1.5;
   text-decoration: none;
 }
+
+button {
+  color: #fff;
+  font-weight: 600;
+  background-color: #008000;
+  border-radius: 1rem;
+  cursor: pointer;
+  padding: 0.25rem 0.9rem;
+  transition: opacity 0.3s;
+  width: fit-content;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+input {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #c7c7c7;
+}
+
+input:focus {
+  outline: none;
+}
+
+li {
+  cursor: pointer;
+  transition: color 0.5s;
+}
+
+li:hover {
+  color: black;
+}
