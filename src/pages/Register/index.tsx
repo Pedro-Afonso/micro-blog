@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { FlashMessage } from "../../shared/components/FlashMessage";
 import { useAuthentication } from "../../shared/hooks/useAuthentication";
 import { main, container } from "./styles.module.css";
 
@@ -12,8 +13,18 @@ interface IRegisterForm {
 
 export const Register = () => {
   const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm();
-  const { createUser } = useAuthentication();
+  const { register, handleSubmit, formState } = useForm();
+  const { createUser, error: authError } = useAuthentication();
+
+  useEffect(() => {
+    setError(authError);
+  }, [authError]);
+
+  useEffect(() => {
+    if (formState.errors && Object.keys(formState.errors).length !== 0) {
+      setError("Por favor, preencha todos os campos!");
+    }
+  }, [formState]);
 
   const onSubmit = async (data: any) => {
     const { displayName, email, password, confirmPassword } = data;
@@ -23,8 +34,7 @@ export const Register = () => {
       return;
     }
 
-    const res = await createUser({ displayName, email, password });
-    console.log(res)
+    await createUser({ displayName, email, password });
   };
 
   return (
@@ -67,6 +77,7 @@ export const Register = () => {
             />
           </label>
           <button type="submit">Registrar</button>
+          <FlashMessage error={error} />
         </form>
       </div>
     </main>
