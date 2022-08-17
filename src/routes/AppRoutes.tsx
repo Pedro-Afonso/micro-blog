@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { CreatePost } from "../pages/CreatePost";
+import { EditPost } from "../pages/EditPost";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
 
@@ -8,7 +9,8 @@ export const AppRoutes = () => {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/create" element={<CreatePost />} />
+      <Route path="/post/create" element={<CreatePost />} />
+      <Route path="/post/edit/:id" element={<EditPost />} />
     </Routes>
   );
 };
