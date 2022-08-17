@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { FlashMessage } from "../../shared/components/FlashMessage";
 import { useAuthContext } from "../../shared/context/AuthContext";
+import { useFetchDocument } from "../../shared/hooks/useFetchDocument";
 import { useFirestore } from "../../shared/hooks/useFirestore";
 import { main, container } from "./style.module.css";
 
@@ -21,17 +22,26 @@ interface IDocument extends IPostForm {
 
 export const EditPost = () => {
   const { id } = useParams();
-  const { updateDocument, response } = useFirestore("posts");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const { register, handleSubmit } = useForm<IPostForm>();
+
+  const { updateDocument, response } = useFirestore("posts");
+
   const { user } = useAuthContext();
+
+  const {
+    document: mydocument,
+    error: docError,
+    loading: docLoading,
+  } = useFetchDocument<IDocument>("posts", id);
+
+  const { register, handleSubmit } = useForm<IPostForm>();
 
   useEffect(() => {
     if (response.error) {
       setError(response.error);
     } else if (response.success) {
-      setMessage("Criado com sucesso!");
+      setMessage("Publicação salvada com sucesso!");
     }
   }, [response]);
 
@@ -68,44 +78,56 @@ export const EditPost = () => {
     <main className={main}>
       <div className={container}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <label>
-            <span>Título</span>
-            <input
-              {...register("title", { maxLength: 50 })}
-              placeholder="Pense em um bom título..."
-              type="text"
-            />
-          </label>
-          <label>
-            <span>URL da imagem:</span>
-            <input
-              {...register("image", { maxLength: 50 })}
-              placeholder="Insira uma imagem que representa o seu post..."
-              type="text"
-            />
-          </label>
-          <label>
-            <span>Conteúdo</span>
-            <textarea
-              {...register("body", { maxLength: 2500 })}
-              placeholder="Insira o conteúdo do post"
-            />
-          </label>
-          <label>
-            <span>Tags</span>
-            <input
-              {...register("tags", {
-                maxLength: 100,
-              })}
-              placeholder="Insira as tags separadas por vígulas"
-              type="text"
-            />
-          </label>
-          <button type="submit">Salvar</button>
+          {mydocument && (
+            <>
+              <label>
+                <span>Título</span>
+                <input
+                  {...register("title", { maxLength: 50 })}
+                  placeholder="Pense em um bom título..."
+                  type="text"
+                  disabled={response.loading || docLoading}
+                  defaultValue={mydocument.title}
+                />
+              </label>
+              <label>
+                <span>URL da imagem:</span>
+                <input
+                  {...register("image", { maxLength: 50 })}
+                  placeholder="Insira uma imagem que representa o seu post..."
+                  type="text"
+                  disabled={response.loading || docLoading}
+                  defaultValue={mydocument.image}
+                />
+              </label>
+              <label>
+                <span>Conteúdo</span>
+                <textarea
+                  {...register("body", { maxLength: 2500 })}
+                  placeholder="Insira o conteúdo do post"
+                  disabled={response.loading || docLoading}
+                  defaultValue={mydocument.body}
+                />
+              </label>
+              <label>
+                <span>Tags</span>
+                <input
+                  {...register("tags", {
+                    maxLength: 100,
+                  })}
+                  placeholder="Insira as tags separadas por vígulas"
+                  type="text"
+                  disabled={response.loading || docLoading}
+                  defaultValue={mydocument.tagsArray}
+                />
+              </label>
+              <button type="submit">Salvar</button>
+            </>
+          )}
           <FlashMessage
-            error={error}
+            error={error || docError}
             message={message}
-            isLoading={response.loading}
+            isLoading={response.loading || docLoading}
           />
         </form>
       </div>
