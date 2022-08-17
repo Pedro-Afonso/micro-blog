@@ -9,12 +9,17 @@
   font-weight: 600;
 }
 
-.card p:nth-child(1) {
+.danger {
   color: black;
   background-color: rgb(255, 151, 151);
 }
 
-.card p:nth-child(2) {
+.success {
   color: black;
   background-color: rgb(126, 252, 126);
+}
+
+.loading {
+  color: black;
+  background-color: rgb(255, 255, 153);
 }
