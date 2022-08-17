@@ -1,8 +1,10 @@
 import {
   addDoc,
   collection,
+  doc,
   DocumentData,
   Timestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { useEffect, useReducer, useState } from "react";
 import { db } from "../../firebase/config";
@@ -10,6 +12,7 @@ import { handleError } from "../utils/handleError";
 
 enum firestoreAction {
   INSERTED = "INSERTED",
+  UPDATED = "UPDATED",
   LOADING = "LOADING",
   ERROR = "ERROR",
 }
@@ -45,6 +48,13 @@ const firestoreReducer = (state: IState, action: IAction) => {
         success: true,
         document: action.payload?.document ? action.payload.document : null,
       };
+    case firestoreAction.UPDATED:
+      return {
+        loading: false,
+        error: null,
+        success: true,
+        document: null,
+      };
     case firestoreAction.LOADING:
       return {
         loading: true,
@@ -64,7 +74,7 @@ const firestoreReducer = (state: IState, action: IAction) => {
   }
 };
 
-export const useFirestore = (postCollection: any) => {
+export const useFirestore = (docCollection: any) => {
   const [response, dispatch] = useReducer(firestoreReducer, initialState);
   // deal with memory leak
   let isCancelled = false;
@@ -79,12 +89,32 @@ export const useFirestore = (postCollection: any) => {
     try {
       const newDocument = { ...document, createdAt: Timestamp.now() };
       const insertedDocument = await addDoc(
-        collection(db, postCollection),
+        collection(db, docCollection),
         newDocument
       );
       checkCancelBeforeDispatch({
         type: firestoreAction.INSERTED,
         payload: { document: insertedDocument },
+      });
+    } catch (error) {
+      checkCancelBeforeDispatch({
+        type: firestoreAction.ERROR,
+        payload: { error: handleError(error) },
+      });
+    }
+  };
+
+  const updateDocument = async <T,>(id: string, data: T) => {
+    checkCancelBeforeDispatch({
+      type: firestoreAction.LOADING,
+    });
+    try {
+      const docRef = await doc(db, docCollection, id);
+
+      await updateDoc(docRef, data);
+
+      checkCancelBeforeDispatch({
+        type: firestoreAction.UPDATED,
       });
     } catch (error) {
       checkCancelBeforeDispatch({
@@ -100,5 +130,5 @@ export const useFirestore = (postCollection: any) => {
     };
   }, []);
 
-  return { insertDocument, response };
+  return { insertDocument, updateDocument, response };
 };
