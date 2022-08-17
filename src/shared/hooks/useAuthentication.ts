@@ -14,9 +14,9 @@ export const useAuthentication = () => {
   const auth = getAuth();
 
   // Deal with memory leak
-  const [cancelled, setCancelled] = useState(false);
+  let isCancelled = false;
   const checkIfIsCancelled = () => {
-    if (cancelled) {
+    if (isCancelled) {
       return;
     }
   };
@@ -59,7 +59,9 @@ export const useAuthentication = () => {
 
   // Cleanup
   useEffect(() => {
-    return () => setCancelled(true);
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
   return { auth, createUser, login, error, loading };
