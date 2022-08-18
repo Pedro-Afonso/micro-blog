@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { CreatePost } from "../pages/CreatePost";
+import { Dashboard } from "../pages/Dashboard";
 import { EditPost } from "../pages/EditPost";
 import { Login } from "../pages/Login";
 import { Post } from "../pages/Post";
@@ -13,6 +14,7 @@ export const AppRoutes = () => {
       <Route path="/post/create" element={<CreatePost />} />
       <Route path="/post/edit/:id" element={<EditPost />} />
       <Route path="/post/:id" element={<Post />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 };

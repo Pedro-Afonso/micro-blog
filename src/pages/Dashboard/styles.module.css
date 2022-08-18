@@ -1,0 +1,50 @@
+.main {
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  max-width: 1284px;
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.table {
+  display: grid;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem auto 0;
+  padding: 1rem;
+  max-width: 800px;
+}
+
+.table > div {
+  padding: 0.6rem 0.5rem;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  transition: box-shadow ease-out 0.2s, border ease-out 0.2s;
+}
+
+.table > div:hover {
+  box-shadow: 10px 5px 5px #02a28f;
+  border: 1px solid #616161;
+}
+
+.table > div:first-child {
+  display: grid;
+  grid-template-columns: 5fr 3fr 1fr;
+  grid-column: 1/4;
+  background-color: #02a28f;
+}
+
+.table > div:not(:first-child) {
+  display: grid;
+  grid-template-columns: 5fr 3fr 1fr;
+  grid-column: 1/4;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
