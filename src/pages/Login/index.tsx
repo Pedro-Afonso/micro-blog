@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FlashMessage } from "../../shared/components/FlashMessage";
-import { useAuthContext } from "../../shared/context/AuthContext";
 import { useAuthentication } from "../../shared/hooks/useAuthentication";
 import { main, container } from "./styles.module.css";
 
@@ -13,12 +12,6 @@ export const Login = () => {
   useEffect(() => {
     setError(authError);
   }, [authError]);
-
-  useEffect(() => {
-    if (formState.errors && Object.keys(formState.errors).length !== 0) {
-      setError("Por favor, preencha todos os campos!");
-    }
-  }, [formState]);
 
   const onSubmit = async (data: any) => {
     const { email, password } = data;
@@ -37,7 +30,7 @@ export const Login = () => {
           <label>
             <span>Email:</span>
             <input
-              {...register("email", { required: true, maxLength: 50 })}
+              {...register("email", { maxLength: 50 })}
               placeholder="Insira seu email"
               type="email"
             />
@@ -45,7 +38,7 @@ export const Login = () => {
           <label>
             <span>Password:</span>
             <input
-              {...register("password", { required: true, maxLength: 50 })}
+              {...register("password", { maxLength: 50 })}
               placeholder="Insira sua senha"
               type="password"
             />

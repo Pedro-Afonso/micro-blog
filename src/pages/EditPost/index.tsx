@@ -93,7 +93,7 @@ export const EditPost = () => {
               <label>
                 <span>URL da imagem:</span>
                 <input
-                  {...register("image", { maxLength: 50 })}
+                  {...register("image")}
                   placeholder="Insira uma imagem que representa o seu post..."
                   type="text"
                   disabled={response.loading || docLoading}

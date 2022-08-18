@@ -20,18 +20,15 @@ export const Register = () => {
     setError(authError);
   }, [authError]);
 
-  useEffect(() => {
-    if (formState.errors && Object.keys(formState.errors).length !== 0) {
-      setError("Por favor, preencha todos os campos!");
-    }
-  }, [formState]);
-
   const onSubmit = async (data: any) => {
     const { displayName, email, password, confirmPassword } = data;
 
+    if (!displayName || !email || !password || !confirmPassword) {
+      return setError("Por favor, preencha todos os campos.");
+    }
+
     if (password !== confirmPassword) {
-      setError("As senhas precisam ser iguais");
-      return;
+      return setError("As senhas precisam ser iguais");
     }
 
     await createUser({ displayName, email, password });
@@ -44,7 +41,7 @@ export const Register = () => {
           <label>
             <span>Nome</span>
             <input
-              {...register("displayName", { required: true, maxLength: 50 })}
+              {...register("displayName", { maxLength: 50 })}
               placeholder="Insira o seu nome"
               type="text"
             />
@@ -52,7 +49,7 @@ export const Register = () => {
           <label>
             <span>Email:</span>
             <input
-              {...register("email", { required: true, maxLength: 50 })}
+              {...register("email", { maxLength: 50 })}
               placeholder="Digite o seu email"
               type="email"
             />
@@ -60,7 +57,7 @@ export const Register = () => {
           <label>
             <span>Senha:</span>
             <input
-              {...register("password", { required: true, maxLength: 50 })}
+              {...register("password", { maxLength: 50 })}
               placeholder="Crie uma senha"
               type="password"
             />
@@ -69,7 +66,6 @@ export const Register = () => {
             <span>Confirme a senha:</span>
             <input
               {...register("confirmPassword", {
-                required: true,
                 maxLength: 50,
               })}
               placeholder="Confirme a senha"

@@ -77,7 +77,7 @@ export const CreatePost = () => {
           <label>
             <span>URL da imagem:</span>
             <input
-              {...register("image", { maxLength: 50 })}
+              {...register("image")}
               placeholder="Insira uma imagem que representa o seu post..."
               type="text"
             />
