@@ -6,6 +6,7 @@ import { useAuthContext } from "../../shared/context/AuthContext";
 import { useFetchDocument } from "../../shared/hooks/useFetchDocument";
 import { useFirestore } from "../../shared/hooks/useFirestore";
 import { main, container } from "./style.module.css";
+import { IPostCollection } from "../../shared/interface/ICollections";
 
 interface IPostForm {
   title: string;
@@ -33,7 +34,7 @@ export const EditPost = () => {
     document: mydocument,
     error: docError,
     loading: docLoading,
-  } = useFetchDocument<IDocument>("posts", id);
+  } = useFetchDocument<IPostCollection>("posts", id);
 
   const { register, handleSubmit } = useForm<IPostForm>();
 
