@@ -1,0 +1,35 @@
+.main {
+  width: 100%;
+  height: 100vh;
+}
+
+.container {
+  max-width: 1284px;
+  padding: 0 36px;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  margin: 0 auto;
+  max-width: 600px;
+  height: auto;
+}
+.content span {
+  color: #616161;
+}
+.content img {
+  border-radius: 1rem;
+  margin: 2rem 0 1rem;
+}
+
+.content::before {
+  content: "";
+  height: 48px;
+  width: 100%;
+  background-color: #02a28f;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
