@@ -56,7 +56,6 @@ export const useFetchDocuments = (
         setLoading(false);
       }
     };
-    console.log("loaddata");
     loadData();
   }, [docCollection, search, uid]);
 
