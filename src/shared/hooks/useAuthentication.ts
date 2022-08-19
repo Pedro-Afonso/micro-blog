@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
   updateProfile,
 } from "firebase/auth";
 import { useState, useEffect } from "react";
@@ -57,6 +58,11 @@ export const useAuthentication = () => {
     }
   };
 
+  const logout = () => {
+    checkIfIsCancelled();
+    signOut(auth);
+  };
+
   // Cleanup
   useEffect(() => {
     return () => {
@@ -64,5 +70,5 @@ export const useAuthentication = () => {
     };
   }, []);
 
-  return { auth, createUser, login, error, loading };
+  return { auth, createUser, login, logout, error, loading };
 };
