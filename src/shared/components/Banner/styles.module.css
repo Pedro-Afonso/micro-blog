@@ -1,0 +1,22 @@
+.container {
+  height: 100%;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  align-items: end;
+  height: 100%;
+  border-radius: 10px;
+  background: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+}
+
+.card > div {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  padding: 24px 22px;
+}
