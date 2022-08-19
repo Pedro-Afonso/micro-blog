@@ -10,6 +10,10 @@
   text-decoration: none;
 }
 
+h2 {
+  font-size: 2rem;
+}
+
 button {
   color: #fff;
   font-weight: 600;
