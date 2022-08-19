@@ -1,6 +1,7 @@
 export interface IPostCollection {
+  id: string;
   body: string;
-  createdAt: { seconds: string; nanoseconds: string };
+  createdAt: { seconds: number; nanoseconds: number };
   createdBy: string;
   image: string;
   tagsArray: string[];
