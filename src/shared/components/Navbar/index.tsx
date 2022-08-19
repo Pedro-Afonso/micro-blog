@@ -64,7 +64,13 @@ export const Navbar = () => {
                 </li>
               </>
             )}
-            <li>Sobre</li>
+            <li
+              onClick={() => {
+                navigate("/about");
+              }}
+            >
+              Sobre
+            </li>
           </ul>
         </nav>
       </div>

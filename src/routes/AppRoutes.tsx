@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { About } from "../pages/About";
 import { CreatePost } from "../pages/CreatePost";
 import { Dashboard } from "../pages/Dashboard";
 import { EditPost } from "../pages/EditPost";
@@ -43,6 +44,7 @@ export const AppRoutes = () => {
         element={user ? <Dashboard /> : <Navigate to="/login" />}
       />
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
     </Routes>
   );
 };
