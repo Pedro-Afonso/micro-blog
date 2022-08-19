@@ -34,17 +34,43 @@ export const Home = () => {
             <div className={popular}>
               <span>Popular</span>
             </div>
-            <MiniCard post={posts[1]} />
-            <MiniCard post={posts[2]} />
-            <MiniCard post={posts[3]} />
+            {posts.length < 1 ? (
+              <button
+                onClick={() => {
+                  navigate("/post/create");
+                }}
+              >
+                Criar um post
+              </button>
+            ) : (
+              <>
+                {posts.slice(1, 4).map((post, key) => (
+                  <MiniCard key={key} post={post} />
+                ))}
+              </>
+            )}
           </div>
+
           <div>
             <div className={recent}>
               <span>Recentes</span>
             </div>
-            {posts.map((post, key: any) => (
-              <Card key={key} post={post} />
-            ))}
+
+            {posts.length < 1 ? (
+              <button
+                onClick={() => {
+                  navigate("/post/create");
+                }}
+              >
+                Criar um post
+              </button>
+            ) : (
+              <>
+                {posts.map((post, key: any) => (
+                  <Card key={key} post={post} />
+                ))}
+              </>
+            )}
           </div>
           <div>
             <div className={popular}>
