@@ -5,8 +5,8 @@ import { FlashMessage } from "../../shared/components/FlashMessage";
 import { useAuthContext } from "../../shared/context/AuthContext";
 import { useFetchDocument } from "../../shared/hooks/useFetchDocument";
 import { useFirestore } from "../../shared/hooks/useFirestore";
-import { main, container } from "./style.module.css";
 import { IPostCollection } from "../../shared/interface/ICollections";
+import styles from "./style.module.css";
 
 interface IPostForm {
   title: string;
@@ -76,8 +76,8 @@ export const EditPost = () => {
   };
 
   return (
-    <main className={main}>
-      <div className={container}>
+    <main className={styles.main}>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit(onSubmit)}>
           {mydocument && (
             <>

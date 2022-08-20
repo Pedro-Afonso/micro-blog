@@ -3,8 +3,8 @@ import { FlashMessage } from "../../shared/components/FlashMessage";
 import { useAuthContext } from "../../shared/context/AuthContext";
 import { useFetchDocuments } from "../../shared/hooks/useFetchDocuments";
 import { useFirestore } from "../../shared/hooks/useFirestore";
-import { main, container, table, actions } from "./styles.module.css";
 import { HiOutlineEye, HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
+import styles from "./styles.module.css";
 
 export const Dashboard = () => {
   const { user } = useAuthContext();
@@ -17,15 +17,15 @@ export const Dashboard = () => {
   } = useFetchDocuments("posts", null, user?.uid);
 
   return (
-    <main className={main}>
-      <div className={container}>
+    <main className={styles.main}>
+      <div className={styles.container}>
         <FlashMessage
           error={response.error || error}
           isLoading={response.loading}
           message={response.success ? "Post excluído com sucesso!" : null}
         />
         {posts && (
-          <div className={table}>
+          <div className={styles.table}>
             <div>
               <div>Título:</div>
               <div>Criado em:</div>
@@ -41,7 +41,7 @@ export const Dashboard = () => {
                       post.createdAt.nanoseconds / 1000
                   ).toLocaleDateString()}
                 </div>
-                <div className={actions}>
+                <div className={styles.actions}>
                   <Link to={`/post/${post.id}`}>
                     <HiOutlineEye />
                   </Link>

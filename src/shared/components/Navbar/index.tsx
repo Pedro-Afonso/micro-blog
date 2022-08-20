@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import { useAuthentication } from "../../hooks/useAuthentication";
-import { navbar, container } from "./styles.module.css";
+import styles from "./styles.module.css";
 
 export const Navbar = () => {
   const { logout } = useAuthentication();
@@ -9,8 +9,8 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <header className={navbar}>
-      <div className={container}>
+    <header className={styles.navbar}>
+      <div className={styles.container}>
         <h1
           onClick={() => {
             navigate("/");

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FlashMessage } from "../../shared/components/FlashMessage";
 import { useAuthentication } from "../../shared/hooks/useAuthentication";
-import { main, container } from "./styles.module.css";
+import styles from "./styles.module.css";
 
 export const Login = () => {
   const [error, setError] = useState("");
@@ -24,8 +24,8 @@ export const Login = () => {
   };
 
   return (
-    <main className={main}>
-      <div className={container}>
+    <main className={styles.main}>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             <span>Email:</span>

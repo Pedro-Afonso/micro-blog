@@ -1,4 +1,4 @@
-import { main, container } from "./styles.module.css";
+import styles from "./styles.module.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
@@ -6,8 +6,8 @@ export const About = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={main}>
-      <div className={container}>
+    <div className={styles.main}>
+      <div className={styles.container}>
         <div>
           <h2>Sobre o MicroBlog</h2>
           <p>

@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { FlashMessage } from "../../shared/components/FlashMessage";
 import { useAuthContext } from "../../shared/context/AuthContext";
 import { useFirestore } from "../../shared/hooks/useFirestore";
-import { main, container } from "./style.module.css";
+import styles from "./style.module.css";
 
 interface IPostForm {
   title: string;
@@ -63,8 +63,8 @@ export const CreatePost = () => {
   };
 
   return (
-    <main className={main}>
-      <div className={container}>
+    <main className={styles.main}>
+      <div className={styles.container}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             <span>Título</span>

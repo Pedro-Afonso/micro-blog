@@ -1,4 +1,4 @@
-import { card, success, danger, loading } from "./styles.module.css";
+import styles from "./styles.module.css";
 
 interface IFlashMessageProps {
   error?: string | null;
@@ -16,10 +16,10 @@ export const FlashMessage: React.FC<IFlashMessageProps> = ({
   }
 
   return (
-    <div className={card}>
-      {message && <p className={success}>{message}</p>}
-      {error && <p className={danger}>{error}</p>}
-      {isLoading && <p className={loading}>Carregando...</p>}
+    <div className={styles.card}>
+      {message && <p className={styles.success}>{message}</p>}
+      {error && <p className={styles.danger}>{error}</p>}
+      {isLoading && <p className={styles.loading}>Carregando...</p>}
     </div>
   );
 };

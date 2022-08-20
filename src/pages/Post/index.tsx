@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useFetchDocument } from "../../shared/hooks/useFetchDocument";
 
-import { main, container, content } from "./styles.module.css";
+import styles from "./styles.module.css";
 import { IPostCollection } from "../../shared/interface/ICollections";
 
 export const Post = () => {
@@ -14,10 +14,10 @@ export const Post = () => {
   } = useFetchDocument<IPostCollection>("posts", id);
 
   return (
-    <div className={main}>
-      <div className={container}>
+    <div className={styles.main}>
+      <div className={styles.container}>
         {post && (
-          <div className={content}>
+          <div className={styles.content}>
             <h2>{post.title}</h2>
             <span>Criado por: {post.createdBy}</span>
             <img src={post.image} alt={post.title} />
