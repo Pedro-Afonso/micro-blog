@@ -20,9 +20,9 @@ export const Card: React.FC<IMiniCardProps> = ({ post }) => {
       ></div>
       <div className={styles.text}>
         <div>
-          <h2>{post.title}</h2>
+          <h2 title={post.title}>{post.title}</h2>
           <h3>por: {post.createdBy}</h3>
-          <p>por: {post.body}</p>
+          <p>{post.body}</p>
           <span>
             {new Date(
               post.createdAt.seconds * 1000 + post.createdAt.nanoseconds / 1000

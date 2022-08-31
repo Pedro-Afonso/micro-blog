@@ -9,10 +9,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1284px;
+  max-width: 1128px;
   height: 100%;
   margin: 0 auto;
-  padding: 0 36px;
 }
 
 .navbar h1 {
@@ -28,4 +27,22 @@
   display: flex;
   justify-content: space-between;
   font-weight: 600;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 948px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    max-width: 664px;
+  }
+}
+
+@media screen and (max-width: 672px) {
+  .container {
+    max-width: 388px;
+  }
 }

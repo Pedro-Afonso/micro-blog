@@ -3,7 +3,7 @@
   cursor: pointer;
 }
 
-.card {
+.banner {
   display: flex;
   align-items: end;
   height: 100%;
@@ -13,10 +13,37 @@
   background-position-y: center;
 }
 
-.card > div {
+.banner > div {
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 0 0 10px 10px;
   width: 100%;
   padding: 24px 22px;
+}
+
+.banner h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+.banner h3,
+.banner h4 {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 672px) {
+  .banner h2 {
+    font-size: 24px;
+    line-height: 1.688rem;
+  }
+  .banner h3,
+  .banner h4 {
+    font-size: 0.875rem;
+    line-height: 1.063rem;
+  }
+  .banner > div {
+    padding: 16px 12px;
+  }
 }

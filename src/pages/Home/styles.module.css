@@ -4,8 +4,7 @@
 }
 
 .container {
-  max-width: 1284px;
-  padding: 0 36px;
+  max-width: 1128px;
   margin: 0 auto;
   height: 100vh;
 }
@@ -18,11 +17,11 @@
   gap: 24px;
 }
 
-.grid > div:nth-child(1) {
+.banner {
   grid-column: 1/9;
   height: 396px;
 }
-.grid > div:nth-child(2) {
+.popular {
   grid-column: 9/13;
   grid-row: 1/2;
   display: flex;
@@ -30,26 +29,7 @@
   justify-content: space-between;
 }
 
-.popular,
 .recent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 48px;
-  width: 100%;
-  background-color: #02a28f;
-  border-radius: 10px;
-}
-
-.popular > span,
-.recent > span {
-  display: block;
-  font-weight: 600;
-  color: white;
-  font-size: 1.25rem;
-}
-
-.grid > div:nth-child(3) {
   grid-column: 1/9;
   height: auto;
   display: grid;
@@ -58,14 +38,95 @@
   gap: 24px;
 }
 
-.recent {
+.recent > div:first-child {
   grid-column: 1/9;
 }
-.grid > div:nth-child(3) > div:not(:first-child) {
+.recent > div:not(:first-child) {
   grid-column: span 4;
 }
 
-.grid > div:nth-child(4) {
+.popular > div:first-child,
+.recent > div:first-child,
+.category > div:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  width: 100%;
+  background-color: #02a28f;
+  border-radius: 10px;
+
+  font-weight: 600;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.category {
   grid-column: 9/13;
   height: auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 948px;
+  }
+  .grid {
+    gap: 26px 16px;
+    padding-top: 26px;
+  }
+  .container {
+    padding: 0;
+  }
+  .recent {
+    gap: 16px;
+  }
+  .banner,
+  .popular {
+    height: 332px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .grid {
+    padding-top: 20px;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 26px 16px;
+  }
+  .container {
+    max-width: 664px;
+  }
+  .banner {
+    height: 354px;
+  }
+}
+
+@media screen and (max-width: 672px) {
+  .grid {
+    padding-top: 15px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+  }
+  .container {
+    max-width: 388px;
+  }
+  .banner {
+    grid-column: 1/7;
+    height: 206px;
+  }
+  .recent {
+    grid-column: 1/7;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: minmax(0, auto);
+    gap: 15px;
+  }
+
+  .recent > div:first-child {
+    grid-column: 1/7;
+    height: 28px;
+  }
+  .recent > div:not(:first-child) {
+    grid-column: span 6;
+  }
 }

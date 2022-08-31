@@ -53,7 +53,37 @@
 }
 
 .text h2,
-h3,
-h4 {
+.text h3,
+.text h4 {
   font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    height: 350px;
+  }
+  .text p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    height: 370px;
+  }
+}
+
+@media screen and (max-width: 672px) {
+  .container {
+    height: 407px;
+  }
 }

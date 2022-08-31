@@ -11,12 +11,12 @@ export const Banner: React.FC<IBannerProps> = ({ post }) => {
   return (
     <div className={styles.container}>
       <div
-        className={styles.card}
+        className={styles.banner}
         style={{ backgroundImage: `url(${background})` }}
       >
         <div>
           <h4>Categoria (em breve)</h4>
-          <h2>{post.title}</h2>
+          <h2 title={post.title}>{post.title}</h2>
           <h3>por: {post.createdBy}</h3>
         </div>
       </div>
